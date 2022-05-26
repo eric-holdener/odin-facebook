@@ -11,6 +11,22 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <%= notice %>
+    <% end %>
+    <% if flash[:alert] %>
+      <%= alert %>
+    <% end %>
+
+    <nav>
+      <h1>BookFace</h1>
+      <% if user_signed_in? %>
+        <%= link_to 'New Post', root_path, class: "btn btn-default btn-sm" %>
+        <%= link_to current_user.username, profile_url(id: current_user.id), class: "btn btn-default btn-sm" %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-default btn-sm" %>
+      <% end %>
+    </nav>
+
     <%= yield %>
   </body>
 </html>

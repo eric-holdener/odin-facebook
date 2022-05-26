@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :posts
   devise_for :users
 
-  resources :users, only: %i[index show] do
+  resources :profiles, only: %i[index show] do
     member do
       delete 'delete_image/:image_id', action: 'delete_image', as: 'delete_image'
     end

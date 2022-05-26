@@ -4,8 +4,45 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <% if @user.profile_picture.attached? && @user.profile_picture.representable? %>
+      <%= image_tag(@user.profile_picture, :size => '100x100') %>
+      <div class="upload-hider-labels">
+        <%= link_to '#', class: 'replace-upload' do %>
+          Replace Current Image
+        <% end %>
+        <span class="separator-bar">|</span>
+        <%= link_to 'Remove Image without replacing',
+                    delete_image_profile_path(image_id: @user.profile_picture.id, id: @user.id),
+                    data: { "turbo-method": :delete },
+                    class: 'remove-upload' 
+        %>      
+      </div>
+    <% else %>
+      <div></div>
+    <% end %>
+    <div class="upload-hider-fields">
+      <%= f.file_field :profile_picture, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autocomplete: "username" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autocomplete: "last_name" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
