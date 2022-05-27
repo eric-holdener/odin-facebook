@@ -1,1 +1,4 @@
-<%= %>
+<p><%= link_to "@#{current_user.username}", profile_url(id: current_user.id) %></p>
+<p><%= link_to "#{current_user.full_name}", profile_url(id: current_user.id) %></p>
+<p><%= link_to "Friends: #{current_user.friends.count}",  friendships_path(user_id: current_user.id) %></p>
+<p><%= link_to "Posts: #{current_user.posts.count}", profile_url(id: current_user.id) %></p>

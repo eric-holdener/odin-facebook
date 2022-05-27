@@ -5,10 +5,5 @@
 <div id="friendships">
   <% @friendships.each do |friendship| %>
     <%= render friendship %>
-    <p>
-      <%= link_to "Show this friendship", friendship %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New friendship", new_friendship_path %>

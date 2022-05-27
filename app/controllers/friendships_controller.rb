@@ -1,5 +1,9 @@
 class FriendshipsController < ApplicationController
 
+  def index
+    @friendships = Friendship.where(user_id: params[:user_id]).all
+  end
+
   # POST /friendships or /friendships.json
   def create
     @friendship = current_user.friendships.build(friend_id: params[:friend_id], status: 2)
