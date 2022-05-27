@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :reactions
   resources :comments
-  resources :friendships, only: %i[create update destroy index]
+  resources :friendships, only: %i[create update destroy show]
   resources :posts
   devise_for :users
 

@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
 
-  def index
-    @friendships = Friendship.where(user_id: params[:user_id]).all
+  def show
+    @friendships = Friendship.where(user_id: params[:id]).all
   end
 
   # POST /friendships or /friendships.json

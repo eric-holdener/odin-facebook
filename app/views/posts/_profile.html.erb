@@ -1,4 +1,24 @@
-<p><%= link_to "@#{user.username}", profile_url(id: user.id) %></p>
-<p><%= link_to "#{user.full_name}", profile_url(id: user.id) %></p>
-<p><%= link_to "Friends: #{user.friends.count}",  friendships_path(user_id: user.id) %></p>
-<p><%= link_to "Posts: #{user.posts.count}", profile_url(id: user) %></p>
+<div class="container border border-secondary rounded p-4">
+  <div class="row">
+    <% if current_user.profile_picture.attached? && current_user.profile_picture.representable? %>
+      <div class="col">
+        <%= image_tag(current_user.profile_picture, :size => '50x50', class: "rounded-circle") %>
+      </div>
+    <% end %>
+    <div class="col">
+      <%= link_to "#{user.full_name}", profile_url(id: user.id) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <img src="" alt="Friends">
+    </div>
+    <div class="col">
+      <%= link_to "Friends",  friendships_path(user_id: user.id) %>
+    </div>
+  </div>
+</div>
+
+
+
+
