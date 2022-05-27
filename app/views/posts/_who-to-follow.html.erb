@@ -1,0 +1,6 @@
+<h2>Who to Follow</h2>
+<%= @who_to_follow.each do |person| %>
+  <div>
+    <%= render partial: 'profile', locals: {user: person} %>
+  </div>
+<% end %>

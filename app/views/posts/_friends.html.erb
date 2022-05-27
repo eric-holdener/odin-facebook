@@ -1,0 +1,7 @@
+<h2>Friends</h2>
+<% @friends.each do |user| %>
+  <div>
+    <%= render partial: 'profile', locals: {user: friend} %>
+  </div>
+
+<% end %>

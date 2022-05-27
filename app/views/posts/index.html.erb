@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render 'profile' %>
+<%= render partial: 'profile', locals: {user: current_user} %>
 <%= render 'feed' %>
 <%= render 'friends' %>
 <%= render 'who-to-follow' %>

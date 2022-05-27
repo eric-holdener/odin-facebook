@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.where(user_id: current_user.friend_ids).or(Post.where(user_id: current_user.id)).order(created_at: :desc)
+    @friends = Friendship.where(user_id: current_user.friend_ids)
+    @who_to_follow = User.limit(5).where.not(user_id: current_user.friend_ids).order("RANDOM()")
   end
 
   # GET /posts/1 or /posts/1.json
