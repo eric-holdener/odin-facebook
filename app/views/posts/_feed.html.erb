@@ -1,3 +1,7 @@
-<% @posts.each do |post| %>
-  <%= render post %>
-<% end %>
+<div>
+  <% @posts.each do |post| %>
+    <div class="bg-light rounded-3">
+      <%= render post %>
+    </div>
+  <% end %>
+</div>

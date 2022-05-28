@@ -4,6 +4,10 @@
       <div class="col flex-grow-0">
         <%= link_to image_tag(user.profile_picture, :size => '50x50', class: "rounded-circle"), profile_url(id: user.id) %>
       </div>
+    <% else %>
+      <div class="col flex-grow-0">
+        <%= link_to image_tag('account-circle-outline.svg', :size => '35x35', class: "rounded-circle"), profile_url(id: user.id) %>
+      </div>
     <% end %>
     <div class="col">
       <%= link_to "#{user.full_name}", profile_url(id: user.id), class: "btn text-white" %>

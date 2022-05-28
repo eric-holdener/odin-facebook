@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1 or /comments/1.json
   def show
+    
   end
 
   # GET /comments/new
@@ -65,6 +66,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.fetch(:comment, {})
+      params.require(:comment).permit!
     end
 end

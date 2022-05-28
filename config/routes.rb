@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :reactions
-  resources :comments
   resources :friendships, only: %i[create update destroy show]
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
   devise_for :users
 
   resources :profiles, only: %i[index show] do

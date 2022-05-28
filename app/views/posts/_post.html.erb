@@ -1,2 +1,36 @@
-<h2><%= post.title %></h2>
-<p><%= post.content %></p>
+<div class="container">
+  <div class="row align-items-center d-flex pt-2">
+    <div class="col flex-grow-0">
+      <% if post.user.profile_picture.attached? && post.user.profile_picture.representable?%>
+        <%= link_to image_tag(post.user.profile_picture, :size => '50x50', class: "rounded-circle"), profile_url(id: post.user.id) %>
+      <% else %>
+        <%= link_to image_tag('account-circle-outline.svg', :size => '35x35', class: "rounded-circle"), profile_url(id: post.user.id) %>
+      <% end %>
+    </div>
+    <div class="col">
+      <div class="align-self-bottom">
+        <%= link_to post.user.full_name, profile_url(id: post.user.id), class: "btn text-black" %>
+      </div>
+      <div>
+        <%= link_to post.post_age, post_path(id: post.id), class: "btn text-black" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3><%= post.title %></h2>
+  </div>
+  <div class="row">
+    <p><%= post.content %></p>
+  </div>
+  <div class="row">
+    <%= render partial: "comments/form", locals: {post: post} %>
+  </div>
+  <div class="row">
+    <% post.comments.each do |comment| %>
+      <%= render comment %>
+    <% end %>
+  </div>
+</div>
+
+
+
