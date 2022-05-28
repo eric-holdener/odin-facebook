@@ -12,7 +12,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body style="padding-top: 75px;">
+  <body style="padding-top: 75px;" class="bg-dark">
     <% if flash[:notice] %>
       <%= notice %>
     <% end %>
@@ -41,7 +41,7 @@
                   <% if current_user.profile_picture.attached? && current_user.profile_picture.representable? %>
                     <%= image_tag(current_user.profile_picture, :size => '35x35', class: "rounded-circle") %>
                   <% else %>
-                    <%= current_user.first_name %>
+                    <%= image_tag('account-circle-outline.svg', :size => '35x35', class: "rounded-circle") %>
                   <% end %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
