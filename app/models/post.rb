@@ -12,4 +12,6 @@ class Post < ApplicationRecord
   def post_age
     return ((Time.zone.now - created_at.to_time) / 1.year.seconds).floor
   end
+
+
 end

@@ -26,8 +26,8 @@
     <%= render partial: "comments/form", locals: {post: post} %>
   </div>
   <div class="row">
-    <% post.comments.each do |comment| %>
-      <%= render comment %>
+    <% unless post.comments.empty? %>
+      <%= render post.comments.scope %>
     <% end %>
   </div>
 </div>
