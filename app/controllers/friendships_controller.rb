@@ -1,7 +1,10 @@
 class FriendshipsController < ApplicationController
 
   def show
-    @friendships = Friendship.where(user_id: params[:id]).all
+    @accepted_friendships = Friendship.where(user_id: params[:id]).where(status: 1)
+    @requested_friends = Friendship.where(user_id: params[:id]).where(status: 2)
+    @friend_requests = Friendship.where(friend_id: params[:id]).where(status: 2)
+    @user = User.find(params[:id])
   end
 
   # POST /friendships or /friendships.json
@@ -20,6 +23,7 @@ class FriendshipsController < ApplicationController
   end
 
   def update
+    @friendship = current_user.inverse_friendships.find(params[:id])
     respond_to do |format|
       if @friendship.update(status: 1)
         Friendship.create(user_id: @friendship.friend_id, friend_id: @friendship.user_id, status: 1)

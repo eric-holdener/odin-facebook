@@ -15,10 +15,10 @@
   </div>
   <div class="row align-items-center">
     <div class="col">
-      <%= link_to image_tag('account-group-outline.svg', alt: 'Friends', class: 'rounded-circle', :size => '50x50'), friendships_path(user_id: user.id)%>
+      <%= link_to image_tag('account-group-outline.svg', alt: 'Friends', class: 'rounded-circle', :size => '50x50'), friendship_path(id: user.id)%>
     </div>
     <div class="col">
-      <%= link_to "Friends",  friendships_path(user_id: user.id), class: "btn text-white" %>
+      <%= link_to "Friends",  friendship_path(id: user.id), class: "btn text-white" %>
     </div>
   </div>
 </div>

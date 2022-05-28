@@ -8,7 +8,9 @@
       <%= render 'feed' %>
     </div>
     <div class="col">
-      <%= render 'friends' %>
+      <% unless current_user.friendships.accepted_friend.empty?%>
+        <%= render 'friends' %>
+      <% end %>
     </div>
   </div>
 </div>

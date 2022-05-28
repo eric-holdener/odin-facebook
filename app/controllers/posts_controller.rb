@@ -3,8 +3,9 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
+    # or(Post.where(user_id: current_user.friendships.accepted_friend.user_id))
     @posts = Post.where(user_id: current_user.id).order(created_at: :desc).includes(:comments)
-    @friends = Friendship.where(user_id: current_user.friend_ids)
+    @friends = Friendship.where(user_id: current_user.friend_ids).where(status: 1)
     @who_to_follow = User.limit(5).where.not(user_id: current_user.friend_ids).order("RANDOM()")
   end
 
