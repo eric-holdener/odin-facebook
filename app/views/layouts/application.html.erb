@@ -35,12 +35,19 @@
               <li class="nav-item">
                 <%= link_to 'New Post', root_path, class: "nav-link text-white" %>
               </li>
+              <li class="nav-item">
+                <% if current_user.inverse_friendships.where(status: 2).empty? %>
+                  <%= link_to image_tag('bell-outline.svg', :size => '30x30', class: "rounded-circle"), friendship_path(id: current_user.id) %>
+                <% else %>
+                  <%= link_to image_tag('bell-badge-outline.svg', :size => '30x30', class: "rounded-circle"), friendship_path(id: current_user.id) %>
+                <% end %>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <% if current_user.profile_picture.attached? && current_user.profile_picture.representable? %>
                     <%= image_tag(current_user.profile_picture, :size => '35x35', class: "rounded-circle") %>
                   <% else %>
-                    <%= image_tag('account-circle-outline.svg', :size => '35x35', class: "rounded-circle") %>
+                    <%= image_tag('account-circle-outline-white.svg', :size => '35x35', class: "rounded-circle") %>
                   <% end %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
