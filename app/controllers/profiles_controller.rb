@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   def index
     @users = User.all
+    @friends = Friendship.where(user_id: current_user.friend_ids).where(status: 1)
   end
 
   # GET /reactions/1 or /reactions/1.json

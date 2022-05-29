@@ -4,7 +4,7 @@
       <% if post.user.profile_picture.attached? && post.user.profile_picture.representable?%>
         <%= link_to image_tag(post.user.profile_picture, :size => '50x50', class: "rounded-circle"), profile_url(id: post.user.id) %>
       <% else %>
-        <%= link_to image_tag('account-circle-outline.svg', :size => '35x35', class: "rounded-circle"), profile_url(id: post.user.id) %>
+        <%= link_to image_tag('account-circle-outline.svg', :size => '50x50', class: "rounded-circle"), profile_url(id: post.user.id) %>
       <% end %>
     </div>
     <div class="col">

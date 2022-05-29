@@ -13,7 +13,6 @@ class FriendshipsController < ApplicationController
 
     respond_to do |format|
       if @friendship.save
-        flash[:notice] = 'Friend request sent'
         format.html { redirect_back(fallback_location: root_url) }
         format.json { render :show, status: :created, location: @friendship }
       else
@@ -27,7 +26,6 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.inverse_friendships.where(user_id: params[:user_id])
     respond_to do |format|
       if @friendship.first.update(status: 1)
-        flash[:notice] = 'Accepted friend request.'
         Friendship.create(user_id: @friendship.first.friend_id, friend_id: @friendship.first.user_id, status: 1)
         format.html { redirect_back(fallback_location: root_url) }
         format.json { render :show, status: :ok, location: @friendship }
