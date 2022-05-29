@@ -1,7 +1,7 @@
 <div class="border-bottom border-secondary"> 
   <% @friends.each do |user| %>
     <div>
-      <%= render partial: 'profile', locals: {user: @friend} %>
+      <%= render partial: 'friend_profile', locals: {user: user.user} %>
     </div>
   <% end %>
 </div>

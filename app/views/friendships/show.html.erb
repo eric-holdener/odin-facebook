@@ -9,6 +9,9 @@
           <div class="col">
             <%= render partial: 'friendship', locals: {user: friend.friend} %>
           </div>
+          <div class="col flex-grow-0 pe-5">
+            <%= button_to "Delete Friend", friendship_path(user_id: friend.user_id, friend_id: friend.friend_id), method: :delete, class: "btn text-white btn-danger text-nowrap" %>
+          </div>
         </div>
       <% end %>
     </div>
@@ -20,7 +23,10 @@
             <%= render partial: 'friendship', locals: {user: friend.user} %>
           </div>
           <div class="col flex-grow-0 pe-5">
-            <%= button_to "Accept Request", friendship_path, method: :patch, class: "btn text-white btn-success text-nowrap" %>
+            <%= button_to "Accept Request", friendship_path(user_id: friend.user_id, friend_id: friend.friend_id), method: :patch, class: "btn text-white btn-success text-nowrap" %>
+            <%= button_to "Decline Request", friendship_path(user_id: friend.user_id, friend_id: friend.friend_id), method: :delete, class: "btn text-white btn-danger text-nowrap" %>
+          </div>
+          <div class="col flex-grow-0 pe-5">
           </div>
         </div>
       <% end %>
@@ -33,7 +39,7 @@
             <%= render partial: 'friendship', locals: {user: friend.friend} %>
           </div>
           <div class="col flex-grow-0 pe-5">
-            <%= button_to "Delete Request", friendship_path, method: :delete, class: "btn text-white btn-danger text-nowrap" %>
+            <%= button_to "Delete Request", friendship_path(user_id: friend.user_id, friend_id: friend.friend_id), method: :delete, class: "btn text-white btn-danger text-nowrap" %>
           </div>
         </div>
       <% end %>
