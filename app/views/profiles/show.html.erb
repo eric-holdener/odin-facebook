@@ -19,13 +19,13 @@
         </div>
       </div>
       <div class="row">
-        <% if @user.friends.count == 1%>
+        <% if @friends.count == 1%>
           <div>
-           <%= @user.friends.count %> Friend
+           <%= @friends.count %> Friend
           </div>
         <% else %>
           <div>
-            <%= @user.friends.count %> Friends
+            <%= @friends.count %> Friends
           </div>
         <% end %>      
       </div>
