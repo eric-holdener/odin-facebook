@@ -21,14 +21,14 @@ class ReactionsController < ApplicationController
 
   # POST /reactions or /reactions.json
   def create
-    @reaction = Reaction.new(reaction_params)
-
+    @post = Post.find(params[:post_id])
+    @reaction = @post.reactions.build(reaction_params)
     respond_to do |format|
       if @reaction.save
-        format.html { redirect_to reaction_url(@reaction), notice: "Reaction was successfully created." }
+        format.html { redirect_back(fallback_location: root_url) }
         format.json { render :show, status: :created, location: @reaction }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_back(fallback_location: root_url) }
         format.json { render json: @reaction.errors, status: :unprocessable_entity }
       end
     end
@@ -49,11 +49,26 @@ class ReactionsController < ApplicationController
 
   # DELETE /reactions/1 or /reactions/1.json
   def destroy
+    @post = Post.find(params[:post_id])
+    @reaction = @post.reactions.where(user_id: params[:reaction][:user_id]).first
     @reaction.destroy
+    if @reaction.reaction_type != params[:reaction][:reaction_type]
+      @new_reaction = @post.reactions.build(reaction_params)
+      respond_to do |format|
+        if @new_reaction.save
+          format.html { redirect_back(fallback_location: root_url) }
+          format.json { render :show, status: :created, location: @new_reaction }
+        else
+          format.html { redirect_back(fallback_location: root_url) }
+          format.json { render json: @new_reaction.errors, status: :unprocessable_entity }
+        end
 
-    respond_to do |format|
-      format.html { redirect_to reactions_url, notice: "Reaction was successfully destroyed." }
-      format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to reactions_url, notice: "Reaction was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -65,6 +80,6 @@ class ReactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reaction_params
-      params.fetch(:reaction, {})
+      params.require(:reaction).permit(:user_id, :reaction_type)
     end
 end

@@ -33,6 +33,22 @@
       </div>
     <% end %>
   </div>
+  <div class="row g-1 pt-2">
+    <div class="col flex-grow-0 text-nowrap">
+      <% if post.reactions.map {|reaction| reaction.user_id}.include?(current_user.id)%>
+        <%= button_to image_tag('thumb-up-outline.svg', :size => '20x20') + " #{post.reactions.where(reaction_type: 1).count}", reaction_path(reaction: {user_id: current_user.id, reaction_type: 1}, post_id: post.id, id: post.reactions.where(user_id: current_user.id).first.id), method: :delete, class: 'btn'%>
+      <% else %>
+        <%= button_to image_tag('thumb-up-outline.svg', :size => '20x20') + " #{post.reactions.where(reaction_type: 1).count}", reactions_path(reaction: {user_id: current_user.id, reaction_type: 1}, post_id: post.id), class: 'btn'%>
+      <% end %>
+    </div>
+    <div class="col">
+      <% if post.reactions.map {|reaction| reaction.user_id}.include?(current_user.id)%>
+        <%= button_to image_tag('thumb-down-outline.svg', :size => '20x20') + " #{post.reactions.where(reaction_type: 2).count}", reaction_path(reaction: {user_id: current_user.id, reaction_type: 2}, post_id: post.id, id: post.reactions.where(user_id: current_user.id).first.id), method: :delete, class: 'btn'%>
+      <% else %>
+        <%= button_to image_tag('thumb-down-outline.svg', :size => '20x20') + " #{post.reactions.where(reaction_type: 2).count}", reactions_path(reaction: {user_id: current_user.id, reaction_type: 2}, post_id: post.id), class: 'btn'%>
+      <% end %>
+    </div>
+  </div>
   <div class="row">
     <% unless post.comments.empty? %>
       <%= render post.comments.scope %>
