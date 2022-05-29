@@ -1,0 +1,7 @@
+<div> 
+  <% @friends.each do |user| %>
+    <div>
+      <%= render partial: 'shared/friend_profile', locals: {user: user.user} %>
+    </div>
+  <% end %>
+</div>

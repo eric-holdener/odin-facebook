@@ -6,6 +6,8 @@ class ProfilesController < ApplicationController
   # GET /reactions/1 or /reactions/1.json
   def show
     @user = User.find(params[:id])
+    @friends = Friendship.where(user_id: @user.friend_ids).where(status: 1)
+    @posts = Post.where(user_id: @user.id).includes(:comments)
   end
 
   def delete_image

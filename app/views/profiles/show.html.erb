@@ -1,14 +1,61 @@
-<h1>Show</h1>
+<div class="container">
+  <div class="row align-items-center pb-4 pt-4 border-bottom border-secondary">
+    <div class="col flex-grow-0">
+      <% if @user.profile_picture.attached? && @user.profile_picture.representable? %>
+        <%= image_tag(@user.profile_picture, :size => '100x100', class: "rounded-circle") %>
+      <% else %>
+        <%= image_tag('account-circle-outline.svg', :size => '100x100', class: "rounded-circle") %>
+      <% end %>    
+    </div>
+    <div class="col text-white">
+      <div class="row">
+        <div>
+          <%= @user.full_name %>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          @<%= @user.username %>
+        </div>
+      </div>
+      <div class="row">
+        <% if @user.friends.count == 1%>
+          <div>
+           <%= @user.friends.count %> Friend
+          </div>
+        <% else %>
+          <div>
+            <%= @user.friends.count %> Friends
+          </div>
+        <% end %>      
+      </div>
+    </div>
+    <div class="col flex-grow-0">
+      <% if @user.id == current_user.id %>
+        <%= button_to "Edit Profile", edit_user_registration_path, class: 'btn btn-secondary text-nowrap' %>
+      <% else %>
+        <%= button_to "Add Friend", friendships_path(friend_id: @user.id)%>
+      <% end %>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <div class="col flex-grow-0">
+      <div class="text-white border-bottom border-secondary">
+        <h2>Friends</h2>
+      </div>
+      <%= render 'shared/friends' %>
+    </div>
+    <div class="col">
+      <div class="text-white">
+        <h2>Posts</h2>
+      </div>
+      <div class="pt-4">
+        <%= render 'shared/feed' %>      
+      </div>
+    </div>
+  </div>
+</div>
 
-<% if @user.profile_picture.attached? && @user.profile_picture.representable? %>
-  <%= image_tag(@user.profile_picture, :size => '100x100') %>
-<% else %>
-  <%= image_tag('account-circle-outline.svg', :size => '35x35', class: "rounded-circle") %>
-<% end %>
-<%= @user.full_name %>
-<%= @user.username %>
-<% if @user.id == current_user.id %>
-  <%= link_to "Edit Profile", edit_user_registration_path %>
-<% else %>
-  <%= button_to "Add Friend", friendships_path(friend_id: @user.id)%>
-<% end %>
+
+
+

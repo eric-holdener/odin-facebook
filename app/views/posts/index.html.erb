@@ -2,10 +2,10 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <%= render partial: 'profile', locals: {user: current_user} %>    
+      <%= render partial: 'shared/profile', locals: {user: current_user} %>    
     </div>
     <div class="col">
-      <%= render 'feed' %>
+      <%= render 'shared/feed' %>
     </div>
     <div class="col">
       <% unless current_user.friendships.accepted_friend.empty?%>
@@ -16,7 +16,7 @@
             </h2>          
           </div>
         </div>
-        <%= render 'friends' %>
+        <%= render 'shared/friends' %>
       <% end %>
     </div>
   </div>
