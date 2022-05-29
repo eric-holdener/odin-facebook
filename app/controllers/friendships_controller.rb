@@ -13,7 +13,8 @@ class FriendshipsController < ApplicationController
 
     respond_to do |format|
       if @friendship.save
-        format.html { redirect_to root_url, notice: 'Friendship was successfully created.' }
+        flash[:notice] = 'Friend request sent'
+        format.html { redirect_back(fallback_location: root_url) }
         format.json { render :show, status: :created, location: @friendship }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -26,8 +27,9 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.inverse_friendships.where(user_id: params[:user_id])
     respond_to do |format|
       if @friendship.first.update(status: 1)
+        flash[:notice] = 'Accepted friend request.'
         Friendship.create(user_id: @friendship.first.friend_id, friend_id: @friendship.first.user_id, status: 1)
-        format.html { redirect_to root_url, notice: 'Accepted friend request.' }
+        format.html { redirect_back(fallback_location: root_url) }
         format.json { render :show, status: :ok, location: @friendship }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -40,15 +42,15 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = current_user.friendships.where(friend_id: params[:friend_id])
     @friendship2 = current_user.inverse_friendships.where(user_id: params[:friend_id])
-    unless @friendship.nil?
+    unless @friendship.empty?
       @friendship.destroy(@friendship.first.id)
     end
-    unless @friendship2.nil?
+    unless @friendship2.empty?
       @friendship2.destroy(@friendship2.first.id)
     end
 
     respond_to do |format|
-      format.html { redirect_to friendship_path(id: params[:id]), notice: "Removed Friend" }
+      format.html { redirect_back(fallback_location: root_url) }
       format.json { head :no_content }
     end
   end
