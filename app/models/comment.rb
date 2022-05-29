@@ -10,8 +10,4 @@ class Comment < ApplicationRecord
   validates :pictures, content_type: %i[png jpg jpeg]
 
   validates :content, presence: true
-
-  def comment_age
-    return ((Time.zone.now - created_at.to_time) / 1.year.seconds).floor
-  end
 end

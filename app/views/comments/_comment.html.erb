@@ -11,12 +11,11 @@
       <div class="align-self-bottom">
         <%= link_to comment.user.full_name, profile_url(id: comment.user.id), class: "text-black small text-decoration-none" %>
       </div>
-      <div class="small">
-        <%= comment.comment_age %>
-      </div>
     </div>
   </div>
   <div class="row small">
-    <%= comment.content %>
+    <div class="col">
+      <%= comment.content %>
+    </div>
   </div>
 </div>

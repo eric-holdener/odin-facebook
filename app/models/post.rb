@@ -8,10 +8,4 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :user_id, presence: true
-
-  def post_age
-    return ((Time.zone.now - created_at.to_time) / 1.year.seconds).floor
-  end
-
-
 end

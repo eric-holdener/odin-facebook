@@ -11,9 +11,6 @@
       <div class="align-self-bottom">
         <%= link_to post.user.full_name, profile_url(id: post.user.id), class: "btn text-black" %>
       </div>
-      <div>
-        <%= link_to post.post_age, post_path(id: post.id), class: "btn text-black" %>
-      </div>
     </div>
   </div>
   <div class="row">
@@ -23,7 +20,18 @@
     <p><%= post.content %></p>
   </div>
   <div class="row">
-    <%= render partial: "comments/form", locals: {post: post} %>
+    <%= form_with(model: [post, post.comments.build]) do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :post_id, :vlaue => post.id %>
+      <div class="col">
+        <div class="form-group pb-3">
+          <%= f.text_field :content, class: 'form-control', placeholder: 'Write a comment...' %>
+        </div>
+      </div>
+      <div class="col">
+        <%= f.submit "Save", class: 'btn btn-success' %>  
+      </div>
+    <% end %>
   </div>
   <div class="row">
     <% unless post.comments.empty? %>
