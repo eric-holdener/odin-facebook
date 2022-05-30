@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  def create
-    super
-    if @user.persisted?
-      UserMailer.welcome_email(@user).deliver
-    end
-  end
+  # def create
+  #   super
+  #   if @user.persisted?
+  #     UserMailer.welcome_email(@user).deliver
+  #   end
+  # end
   # GET /resource/sign_up
   # def new
   #   super
