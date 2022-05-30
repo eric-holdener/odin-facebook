@@ -86,4 +86,5 @@ end
 
 group :production do
   gem 'pg'
+  gem 'postgresql', '~> 1.0'
 end
