@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   resources :profiles, only: %i[index show] do
     member do
