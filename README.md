@@ -14,7 +14,11 @@ Takeaways
 - My workflow for this project was as follows: pseudocode out database structure and figure out timeline and parameters, create database and models for relationships, build out web pages
 - One thing I would do differently in the future is utilize RSpec more to TDD my webpage. I did alot of testing when I was just working with Ruby, making terminal applications like chess, but once I got to Rails I fell off testing. Manually testing definitely took longer for me than test driven development would have, but it's a learning experience.
 
-To-Dos
+Future To-Dos
 - Revisit with more Javascript knowledge to make page more responsive
 - Keep on the lookout for devise update with turbo integration
 - Add turbo and stimulus to create a true SPA
+- Figure out how to do image galleries inside of a post, to be able to upload multiple images and scroll through them (probably a JS thing)
+- Add ability to put image on comments
+- Add liking, disliking, replying, and deleting to comments
+- Make comment chains easier to see - show which comment is a child of another

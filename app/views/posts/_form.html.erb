@@ -17,6 +17,10 @@
   <div class="row pb-2">
     <%= f.text_area :content, class: 'form-control', placeholder: 'Share your thoughts!' %>
   </div>
+  <div class="row pb-2">
+    <%= f.label :picture, 'Upload a picture!' %>
+    <%= f.file_field :picture, class:'form-control' %>
+  </div>
   <div class="row">
     <%= f.submit class: "btn btn-success" %>
   </div>

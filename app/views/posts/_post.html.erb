@@ -19,6 +19,11 @@
   <div class="row">
     <p><%= post.content %></p>
   </div>
+  <% if post.picture.attached? && post.picture.representable? %>
+    <div class="row pb-2">
+      <%= image_tag(post.picture) %>
+    </div>
+  <% end %>
   <div class="row">
     <%= form_with(model: [post, post.comments.build]) do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
