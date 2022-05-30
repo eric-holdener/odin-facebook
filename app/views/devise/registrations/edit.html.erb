@@ -4,37 +4,40 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         <div class="field">
-          <% if @user.profile_picture.attached? && @user.profile_picture.representable? %>
-            <div class="row pb-3 align-items-center">
-              <div class="col flex-grow-0">
-                <%= image_tag(@user.profile_picture, :size => '100x100', class: 'rounded-circle') %>
+          <div class="row pb-3 align-items-center">
+            <% if @user.profile_picture.attached? && @user.profile_picture.representable? %>
+                <div class="col flex-grow-0">
+                  <%= image_tag(@user.profile_picture, :size => '100x100', class: 'rounded-circle') %>
+                </div>
+                <%#<div class="col">
+                  <div class="upload-hider-labels">
+                    <%# <div class="row">
+                      <div class="col">
+                        <%= link_to 'Remove Image without replacing (not currently functional)',
+                                    delete_image_profile_path(image_id: @user.profile_picture.id, id: @user.id),
+                                    data: {turbo_method: :delete, turbo_confirm: "Are yuo sure?"},
+                                    class: 'remove-upload btn btn-danger' 
+                        %> 
+                    <%# </div>
+                    </div> %>
+                <%# </div>            
+                </div>%>
+              <% else %>
+                <div class="profile-picture no-profile-picture rounded-circle"></div>
+              <% end %>       
+            <div class="upload-hider-fields col">
+              <div class="row">
+                <div class="col pb-2">
+                  Upload a Profile Picture
+                </div>
               </div>
-              <div class="col">
-                <div class="upload-hider-labels">
-                  <div class="row pb-2">
-                    <div class="col">
-                      <%= link_to '#', class: 'replace-upload btn btn-secondary' do %>
-                        Replace Current Image
-                      <% end %>                
-                    </div>
-                  </div>
-                  <%# <div class="row">
-                    <div class="col">
-                      <%= link_to 'Remove Image without replacing (not currently functional)',
-                                  delete_image_profile_path(image_id: @user.profile_picture.id, id: @user.id),
-                                  data: {turbo_method: :delete, turbo_confirm: "Are yuo sure?"},
-                                  class: 'remove-upload btn btn-danger' 
-                      %> 
-                   <%# </div>
-                  </div> %>
-                </div>            
+              <div class="row">
+                <div class="col">
+                  <%= f.file_field :profile_picture, class: 'form-control w-25' %>                
+                </div>
               </div>
-            <% else %>
-              <div></div>
-            <% end %>
-            </div>          
-          <div class="upload-hider-fields">
-            <%= f.file_field :profile_picture, class: 'form-control' %>
+
+            </div>
           </div>
         </div>        
         <div class="row pb-3">
