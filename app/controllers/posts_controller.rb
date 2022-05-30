@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     # or(Post.where(user_id: current_user.friendships.accepted_friend.user_id))
+    @post = Post.new
     @posts = Post.where(user_id: current_user.id).or(Post.where(user_id: current_user.friendships.where(status: 1).map {|friend| friend.friend_id})).order(created_at: :desc).includes(:comments)
     @friends = Friendship.where(user_id: current_user.friend_ids).where(status: 1)
     @who_to_follow = User.limit(5).where.not(user_id: current_user.friend_ids).order("RANDOM()")
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
+        format.html { redirect_back(fallback_location: root_url) }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+        format.html { redirect_back(fallback_location: root_url) }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,6 +69,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.fetch(:post, {})
+      params.require(:post).permit(:title, :content, :user_id)
     end
 end

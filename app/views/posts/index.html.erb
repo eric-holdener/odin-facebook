@@ -5,7 +5,19 @@
       <%= render partial: 'shared/profile', locals: {user: current_user} %>    
     </div>
     <div class="col">
-      <%= render 'shared/feed' %>
+      <div class="row">
+        <div>
+          <div class="bg-light rounded-3 pb-3 mb-3">
+            <div class="container">
+              <%= render 'form' %>
+            </div>        
+          </div>
+        </div>          
+      </div>
+      <div class="row">
+        <%= render 'shared/feed' %>
+      </div>
+      
     </div>
     <div class="col">
       <% unless current_user.friendships.accepted_friend.empty?%>
