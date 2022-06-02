@@ -8,6 +8,8 @@ Project is hosted here: https://protected-cliffs-75013.herokuapp.com/
 
 As of 6/2/22, core functionality has been created. This project is top of list to revisit once self paced coursework is completed and I can turn all my attention to refactoring projects and creating new ones.
 
+Please contact eholdener12@gmail.com for test login information
+
 Takeaways
 - Turbo and Devise integration stumped me for a long time, and still does. According to a reddit post made by the Devise maintainer at the end of February, Devise isn't fully integrated with Rails 7 and turbo, which made link_to's with delete or post impossible for me to use. I had to substitute buttons in that case.
 - Bootstrap is a great tool and I can see why people in the industry love it - my weakest skill currently is probably CSS and Bootstrap enabled me to build a functioning and pretty website.
