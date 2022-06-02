@@ -4,7 +4,9 @@ This repo is a Facebook clone, with parameters for the project laid out by TheOd
 
 Parameters can be found here: https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project
 
-Project is hosted here: 
+Project is hosted here: https://protected-cliffs-75013.herokuapp.com/
+
+As of 6/2/22, core functionality has been created. This project is top of list to revisit once self paced coursework is completed and I can turn all my attention to refactoring projects and creating new ones.
 
 Takeaways
 - Turbo and Devise integration stumped me for a long time, and still does. According to a reddit post made by the Devise maintainer at the end of February, Devise isn't fully integrated with Rails 7 and turbo, which made link_to's with delete or post impossible for me to use. I had to substitute buttons in that case.
@@ -22,3 +24,5 @@ Future To-Dos
 - Add ability to put image on comments
 - Add liking, disliking, replying, and deleting to comments
 - Make comment chains easier to see - show which comment is a child of another
+- Refactor code to make more use of models, move alot of logic code to model to fix integration issues
+- Troubleshoot Sign in with Facebook option
